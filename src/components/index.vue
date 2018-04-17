@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="">
 		
 		神州租车
 		<i class="el-icon-edit"></i>
@@ -54,6 +54,7 @@
 
 <style lang="scss" scoped="scoped">
 div{
+	font-size: 0.08rem;
 	width: 100%;
 }
 	div>.my-swipe {

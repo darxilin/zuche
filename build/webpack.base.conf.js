@@ -46,7 +46,7 @@ module.exports = {
         loader: 'style-loader!css-loader',
         include: [
           /src/,//在src目录下的css需要编译
-          '/node_modules/element-ui/lib/theme-chalk/index.css'//增加swiper目录
+          //'/node_modules/element-ui/lib/theme-chalk/index.css'//增加swiper目录
         ] 
        
       },
