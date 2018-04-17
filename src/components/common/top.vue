@@ -1,6 +1,8 @@
 <template>
 	<div class="nav">
 
+		<slot></slot>
+
 	</div>
 </template>
 
@@ -22,6 +24,7 @@
 		width: 100%;
 		height: 0.25rem;
 		background: #1b2939;
+		
 	}
 	
 </style>
