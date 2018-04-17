@@ -20,7 +20,7 @@ export default {
   methods:{
   },
   components:{
-
+			
   }
 }
 </script>
