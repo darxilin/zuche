@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style>
+html{
+	font-size: 53vw;
+}
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,6 +53,6 @@ body{
 	background: #e1e1e1;
 }
 section{
-	margin-top: 50px;
+	margin-top: 0.25rem;
 }
 </style>
