@@ -44,10 +44,13 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
+<<<<<<< HEAD
+=======
         include: [
           /src/,//在src目录下的css需要编译
           //'/node_modules/element-ui/lib/theme-chalk/index.css'//增加swiper目录
         ] 
+>>>>>>> 706499c08dc6c9807b2c943749553397867e198e
        
       },
       {
@@ -74,6 +77,7 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
+      { test: /\.(eot|woff|ttf)$/, loader: 'file-loader' }
     ]
   },
   node: {
