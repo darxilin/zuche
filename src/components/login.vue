@@ -1,18 +1,19 @@
 <template>
 	<div id="login">
 		<top>
-			<i class="iconfont icon-back"></i>
+			<i class="iconfont icon-back" @click=""></i>
 		</top>
-		<div id="banner">
-		
+		<div class="aa">
+			
 			<mt-field id="user" label="账　　号" placeholder="请输入用账户"v-model="username"></mt-field>
 			<mt-field label="密　　码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
-			
-			<mt-button id="tijiao" type="primary" size="large">提交</mt-button>
+		</div>
+		<div id="banner">
+			<mt-button id="tijiao" type="primary" size="large" @click="yanzhen">提交</mt-button>
 		</div>
 		<div id="wrop">
-			<span id="span1">会员注册</span>
-			<span id="span2">忘记密码？</span>
+			<router-link id="span1" tag="span" to="#">会员注册</router-link>
+			<router-link id="span2" tag="span" to="#">忘记密码？</router-link>
 		</div>
 	</div>
 </template>
@@ -31,7 +32,14 @@ import top from "./common/top"
 		components:{
 			top,
 		},
-		
+		methods:{
+			yanzhen(){
+				
+//			axios.get("").then(res=>{
+//			console.log(res.data);
+			
+			}
+  		}
 	}
 </script>
 
@@ -39,23 +47,15 @@ import top from "./common/top"
 #login{
 	font-size: 0.06rem;
 }
- html,body,div,mt-button{
- margin: 0;
- padding: 0;
-
- }
- #user{
- margin-top:0.05rem;
+ #banner{
+ 	display: flex;
  }
  #tijiao{
+ 	border-radius:0.05rem ;
  	margin-top: 0.1rem;
- 	width:1.88rem;
+ 	width:1.79rem;
  	height:0.235rem;
- 	
- }
- 
- #banner{
- 	margin-top:0.05rem;
+ 	justify-content:center;
  }
  #wrop{
 	margin-top:0.025rem;
@@ -66,8 +66,22 @@ import top from "./common/top"
 	 	color:#ff8650;
 	 }
 	#span2{
+		padding:0.025rem;
 	 	float:right;
 	 }
  }
- 
+ #banner{
+ 	width:90%;
+ 	margin: 0 auto;
+ }
+ .aa{
+ 	padding-top:0.05rem;
+ }
+ .icon-back{
+ 	color:#efb81d;
+ 	font-size:0.15rem;
+    margin-top:0.07rem;
+    display: block;
+   	line-height:0.15rem;
+ }
 </style>
