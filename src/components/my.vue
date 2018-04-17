@@ -1,5 +1,6 @@
 <template>
 	<div id="my">
+	<div class="my">
 		<router-view></router-view>
 	</div>
 </template>
@@ -14,10 +15,8 @@
 	}
 </script>
 
-<style>
-	#my{
-	 width: 300px;
-	 height: 300px;
-	 background: aqua;
+<style lang="scss" scoped="scoped">
+	.my{
+		font-size: 0.08rem;
 	}
 </style>
