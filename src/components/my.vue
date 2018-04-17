@@ -1,6 +1,6 @@
 <template>
-	<div id="my">
-		{{name}}
+	<div class="my">
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -8,16 +8,14 @@
 	export default{
 		data(){
 			return{
-			name="李白"
+			name:"李白"
 			}
 		}
 	}
 </script>
 
-<style>
-	#my{
-	 width: 300px;
-	 height: 300px;
-	 background: aqua;
+<style lang="scss" scoped="scoped">
+	.my{
+		font-size: 0.08rem;
 	}
 </style>

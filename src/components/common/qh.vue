@@ -1,7 +1,6 @@
 <template>
-	<div class="zuche">
-		zuche
-		<router-view></router-view>
+	<div class="qh">
+		取车还车
 	</div>
 </template>
 
@@ -13,13 +12,10 @@
 			}
 		},
 		components:{
-			top
+			
 		}
 	}
 </script>
 
-<style lang="scss" scoped="scoped">
-	.zuche{
-		font-size: 0.08rem;
-	}
+<style>
 </style>

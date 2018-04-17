@@ -1,11 +1,15 @@
 <template>
-	<div class="zuche">
-		zuche
-		<router-view></router-view>
+	<div>
+		<top>
+			到店取还
+		</top>
+		<qh></qh>
 	</div>
 </template>
 
 <script>
+	import top from "./common/top"
+	import qh from "./common/qh"
 	export default {
 		data(){
 			return {
@@ -13,13 +17,11 @@
 			}
 		},
 		components:{
-			top
+			top,
+			qh
 		}
 	}
 </script>
 
-<style lang="scss" scoped="scoped">
-	.zuche{
-		font-size: 0.08rem;
-	}
+<style>
 </style>
