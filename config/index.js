@@ -11,9 +11,17 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-    	"/v4":{
-    		target:"https://m.maizuo.com",
-    		host:"m.maizuo.com",
+    	"/wap":{
+    		target:"https://m.zuche.com/wap/topic/getWapFocusPics.do",
+    		host:"m.zuche.com",
+    		changeOrigin:true,
+    		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+    	},
+    	"/img":{
+    		target:"http://10.40.155.154:3000",
+    		host:"http://10.40.155.154",
     		changeOrigin:true,
     		/*pathRewrite:{
     			"^/v4":""

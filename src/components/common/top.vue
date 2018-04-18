@@ -1,6 +1,11 @@
 <template>
 	<div class="nav">
+
 		<slot></slot>
+
+
+		<slot></slot>
+
 	</div>
 </template>
 
