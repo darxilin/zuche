@@ -12,6 +12,7 @@ import my from '@/components/my'
 import register from '@/components/register'
 import my_info from '@/components/my_info'
 import order from '@/components/order'
+import city from '@/components/common/city'
 
 Vue.use(Router)
 
@@ -72,7 +73,16 @@ export default new Router({
 					path:"tj",
 					name:"tj",
 					component:tj,
-				}
+					children:[
+					
+					]
+				},
+				{
+						path:"city",
+						name:"city",
+						component:city
+					}
+				
     	]
     },
     {
