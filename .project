@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>my_app</name>
+	<name>zuche</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,38 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1523767304706</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1523886883235</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1523929148535</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-<<<<<<< HEAD
-			<id>1523945710461</id>
-=======
-			<id>1523945296159</id>
->>>>>>> 6befc03aed0b85f7e946b1d9ef45b1e8a0e69bd7
+			<id>1524012302579</id>
 			<name></name>
 			<type>26</type>
 			<matcher>

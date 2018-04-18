@@ -1,8 +1,7 @@
 <template>
 	<div class="index">
 		<top>
-			kslaijfiew
-			<i class="el-icon-phone-outline"></i>
+			<div class="top"><i class="el-icon-phone-outline"></i></div>
 		</top>
 		<swipe class="my-swipe">
 			<swipe-item class="slide1" v-for="value in picList" :key="value.id">
@@ -10,16 +9,18 @@
 			</swipe-item>		
 		</swipe>
 		<ul>
-			<li v-for="value,i in params">
+			<router-link :to="getRouter(i)" v-for="value,i in params" tag="li">
 				<!--{{value}}-->
-				<p class="icon" :style="`background-position:${value}`" ></p>
-				<p class="title">{{dataTitle[i]}}</p>
-			</li>
+				
+					<p class="icon" :style="`background-position:${value}`" ></p>
+					<p class="title">{{dataTitle[i]}}</p>
+				
+			</router-link>
 		</ul>
 		<h3>400-616-6666</h3>
 		<p class="download">
-			<el-button tag="div"><em class="app"></em>下载    app</el-button>
-			<el-button tag="div"><em></em>访问网页版</el-button>
+			<el-button tag="div"><em class="iconfont icon-mobilephone"></em>下载    app</el-button>
+			<el-button tag="div"><em class="iconfont icon-electronics"></em>访问网页版</el-button>
 		</p>
 		<p class="foot">
 			<a href="#">关于我们</a>
@@ -27,6 +28,7 @@
 			<a href="#">帮助中心</a>
 		</p>
 		<p class="copyright">Copyright ©2018 神州租车</p>
+		
 	</div>
 </template>
 
@@ -34,17 +36,22 @@
 	import top from './common/top.vue';
 	import { Swipe, SwipeItem } from 'vue-swipe';
 	import axios from "axios";
+	
 	export default {
 		data(){
 			return {
 				picList:[{"picPointUrl":"http://mktm.zuche.com/html5/activityplanning/newtopic/oetimerent.html?szhdbm=20180327_oetimerent_wap&utm_campaign=oetimerent&utm_source=guanwang&utm_medium=wap","picPath":"http://fimg.zuchecdn.com/upload/app/HomePage/HeadFigure/2018/750x410-fenshizulin-20180328-APP.JPG","id":349,"picPathS":"","sortId":50,"picName":"/750x410-fenshizulin-20180328-APP.JPG"},{"picPointUrl":"http://mktm.zuche.com/html5/activityplanning/newtopic/oetimerentlong.html?szhdbm=20180329_oetimerentlong_wap","picPath":"http://fimg.zuchecdn.com/upload/app/HomePage/HeadFigure/2018/750x410-XSZN-20180330-APP.jpg","id":356,"picPathS":"","sortId":48,"picName":"/750x410-XSZN-20180330-APP.jpg"},{"picPointUrl":"http://mktm.zuche.com/html5/2018/pullnewmemberlog/index.html?szhdbm=20180328_invitation_wap&utm_campaign=invitation&utm_source=guanwang&utm_medium=wap","picPath":"http://fimg.zuchecdn.com/upload/app/HomePage/HeadFigure/2018/750x410-yx-20180328-appshare-APP.jpg","id":351,"picPathS":"","sortId":47,"picName":"/750x410-yx-20180328-appshare-APP.jpg"},{"picPointUrl":"http://mktm.zuche.com/html5/activityplanning/newtopic/oeactivity692.html?szhdbm=20180320_activity692_wap&utm_campaign=qingming&utm_source=guanwang&utm_medium=wap","picPath":"http://fimg.zuchecdn.com/upload/app/HomePage/HeadFigure/2018/750x410-real69-20180320-APP-WAP.jpg","id":339,"picPathS":"","sortId":46,"picName":"/750x410-real69-20180320-APP-WAP.jpg"},{"picPointUrl":"http://mktm.zuche.com/html5/activityplanning/newtopic/oediscountgjzc.html?szhdbm=20180130_discountgjzc_wap?szhdbm=20180130_discountgjzc_wap&utm_campaign=discountgjzc&utm_source=guanwang&utm_medium=wap","picPath":"http://fimg.zuchecdn.com/upload/app/HomePage/HeadFigure/2018/750x410-guojizuche-180201-app-wap.jpg","id":310,"picPathS":"","sortId":32,"picName":"/750x410-guojizuche-180201-app-wap.jpg"}],
 				filmlist:[],
 				dataTitle:["上门送取","到店取还","特价套餐","顺风车","国际租车","我的"],
-				params:['-35px 0','-77px 0','0 -40px','-35px -40px','-75px -40px','-110px -40px']
+				params:['-35px 0','-77px 0','0 -40px','-35px -40px','-75px -40px','-110px -40px'],
+				routers:["/zuche/sm","/zuche/dd","/zuche/tj","/sfc","/inter","/my"]
 			}
 		},
 		methods:{
-			
+			getRouter(i){
+				
+				 return this.routers[i];
+			}
 		},
 		mounted(){
 			axios.get("/img").then((res)=>{
@@ -80,14 +87,21 @@ p{
 	background: #f7f7f8;
 	font-size: 0.08rem;
 	width: 100%;
-	>top{
-		background: #1b2939 url(https://mimage.zuchecdn.com/newportion/newindex/logonew.png) center no-repeat;
-		background-size: 0.56rem 0.09rem;
-			i{
+	
+		   .top{
+		   	height: 100%;
+		   	 	background: #1b2939 url(https://mimage.zuchecdn.com/newportion/newindex/logonew.png) center no-repeat;
+    			background-size: 112px 18px;
+    			i{
 				color: yellow;
-			}
+				position: absolute;
+				display: block;
+				top:0.06rem;
+				right: 0.05rem;
+				font-size: 0.13rem;
+				}
+		   }
 		
-		}
 	>ul{
 		width: 100%;
 		display: flex;
@@ -120,19 +134,7 @@ p{
 		width: 100%;
 		display: flex;
 		justify-content: space-around;
-		el-button{
-		width: 0.75rem;
-			em{
-				display: inline-block;
-				width: 0.115rem;
-				height: 0.11rem;
-			}
-			.app{
-				background: url("../../static/pictures/download.png") no-repeat;
-				background-size: 230px 230px;
-				background-position: 0 -103px;
-			}
-		}
+		
 	}
 	.foot{
 		display: flex;
