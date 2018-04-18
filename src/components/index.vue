@@ -9,7 +9,7 @@
 			</swipe-item>		
 		</swipe>
 		<ul>
-			<router-link :to="getRouter(i)" v-for="value,i in params" tag="li">
+			<router-link :to="getRouter(i)" v-for="value,i in params" tag="li" :key="i">
 				<!--{{value}}-->
 				
 					<p class="icon" :style="`background-position:${value}`" ></p>
