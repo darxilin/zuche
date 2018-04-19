@@ -11,9 +11,9 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-    	"/v4":{
-    		target:"https://m.maizuo.com",
-    		host:"m.maizuo.com",
+    	"/dataApi":{
+    		target:"http://localhost:3000",
+	  		host:"localhost:3000",
     		changeOrigin:true,
     		/*pathRewrite:{
     			"^/v4":""

@@ -5,14 +5,14 @@
 		</top>
 		<div class="aa">
 			
-			<mt-field id="user" label="账　　号" placeholder="请输入用账户"v-model="username"></mt-field>
-			<mt-field label="密　　码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+			<mt-field id="user" label="账　　号" placeholder="请输入用账户" v-model="email" class="iconfont icon-account"></mt-field>
+			<mt-field label="密　　码" placeholder="请输入密码" type="password" v-model="password" class="iconfont icon-bags"></mt-field>
 		</div>
 		<div id="banner">
-			<mt-button id="tijiao" type="primary" size="large" @click="yanzhen">提交</mt-button>
+			<mt-button id="tijiao" type="primary" size="large" @click="yanzhen">登录</mt-button>
 		</div>
 		<div id="wrop">
-			<router-link id="span1" tag="span" to="#">会员注册</router-link>
+			<router-link id="span1" tag="span" to="register">会员注册</router-link>
 			<router-link id="span2" tag="span" to="#">忘记密码？</router-link>
 		</div>
 	</div>
@@ -20,7 +20,9 @@
 
 <script>
 import top from "./common/top"
-	export default{
+import axios from "axios"
+import router from  "../router"
+ 	export default{
 		data(){
 			return{
 			name:"李白",
@@ -33,13 +35,17 @@ import top from "./common/top"
 			top,
 		},
 		methods:{
-			yanzhen(){
-				
-//			axios.get("").then(res=>{
-//			console.log(res.data);
+			yanzhen(){	
 			
+			axios.get("/dataApi?id=5ad6f44dd13781279ceaeb96").then(res=>{
+				if(res.data.email==this.email && res.data.password==this.password){
+					router.push("/index")
+				}
+			}).catch(err=>{
+				alert("err")
+			})
 			}
-  		}
+		}
 	}
 </script>
 
@@ -70,6 +76,14 @@ import top from "./common/top"
 	 	float:right;
 	 }
  }
+.icon-account:before{
+	line-height: 3;
+	padding-left:0.05rem;
+}
+.icon-bags{
+	line-height: 3;
+	padding-left:0.05rem;
+}
  #banner{
  	width:90%;
  	margin: 0 auto;
