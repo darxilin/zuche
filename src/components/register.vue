@@ -14,13 +14,14 @@
 		</div>
 		<div class="tijiao">
 			<mt-button id="tijiao" type="primary" size="large" @click="tijiao">提交</mt-button>
-		<el-radio v-model="radio" id="clause" @click="handclause"><b>我已阅读并同意</b><a id="aaaa" href="http://m.zuche.com/html5/newversion/info/policy.html">《神州租车会员服务条款》</a></el-radio>
+		<el-radio v-model="radio" lady="1" id="clause" @click="handclause"><b>我已阅读并同意</b><a id="aaaa" href="http://m.zuche.com/html5/newversion/info/policy.html">《神州租车会员服务条款》</a></el-radio>
 		</div>
 	</div>
 </template>
 
 <script>
 import top from "./common/top"
+import axios from "axios"
 	export default{
 		data(){
 			return{
@@ -29,7 +30,7 @@ import top from "./common/top"
 				email:"",
 				password1:"",
 				password2:"",
-				phone:"",
+				phone:[],
 				website:"",
 				number:"",
 				rand:[],
@@ -65,8 +66,17 @@ import top from "./common/top"
 		     	this.radio==!this.radio
 		     },
 		     tijiao(){
-		     	
-		     }
+		     		var Phonenumber=this.phone;
+					var password=this.password1;
+		     	axios.post("/saveApi",{
+		     		Phonenumber,
+					password
+		     	}).then(res=>{
+		     		console.log(res)
+		     	}).catch(err=>{
+				alert(err)
+			})
+		  }
 		},
 		mounted(){
 			this.rand=Math.floor(Math.random()*9000+1000);
@@ -85,6 +95,7 @@ import top from "./common/top"
    	line-height:0.15rem;
  }
  .wrop{
+ 	line-height: 3;
  	padding-top:0.05rem;
  }
  .tijiao{
@@ -100,7 +111,6 @@ import top from "./common/top"
  }
  #aaaa{
  	color:#2b99ff;
- 	margin-left:0.4rem;
  	text-decoration:none ;
  }
  .icon-mobilephone{

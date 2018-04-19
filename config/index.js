@@ -20,6 +20,14 @@ module.exports = {
     			"^/v4":""
     		}*/
 	  		},
+	  		"/saveApi":{
+    		target:"http://localhost:3000",
+	  		host:"localhost:3000",
+	  		changeOrigin:true,
+	  		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+	  		},
     	"/wap":{
     		target:"https://m.zuche.com/wap/topic/getWapFocusPics.do",
     		host:"m.zuche.com",
