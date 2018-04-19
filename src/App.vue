@@ -28,6 +28,11 @@ export default {
 <style>
 html{
 	font-size: 53vw;
+	
+}
+body{
+	min-width: 1.6rem;
+	overflow-x: hidden;
 }
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -47,10 +52,9 @@ li{
 	list-style: none;
 }
 body{
-	width: 100%;
 	height: 100%;
 	font-family: "微软雅黑";
-	background: #e1e1e1;
+	background: #f7f7f8;
 }
 section{
 	margin-top: 0.25rem;

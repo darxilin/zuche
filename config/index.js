@@ -11,9 +11,26 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+
     	"/dataApi":{
     		target:"http://localhost:3000",
 	  		host:"localhost:3000",
+	  		changeOrigin:true,
+	  		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+	  		},
+    	"/wap":{
+    		target:"https://m.zuche.com/wap/topic/getWapFocusPics.do",
+    		host:"m.zuche.com",
+    		changeOrigin:true,
+    		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+    	},
+    	"/img":{
+    		target:"http://10.40.155.154:3000",
+    		host:"http://10.40.155.154",
     		changeOrigin:true,
     		/*pathRewrite:{
     			"^/v4":""

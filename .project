@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>my_app</name>
+	<name>zuche</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -10,13 +10,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>com.pandora.projects.ui.MKeyBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>com.pandora.projects.ui.MKeyNature</nature>
 		<nature>com.aptana.projects.webnature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1523767304706</id>
+			<id>1524012302579</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -25,25 +31,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1523886883235</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1523929148535</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1523945296159</id>
+			<id>1524063194755</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
