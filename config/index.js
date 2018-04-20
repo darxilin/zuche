@@ -13,16 +13,16 @@ module.exports = {
     proxyTable: {
 
     	"/dataApi":{
-    		target:"http://localhost:3000",
-	  		host:"localhost:3000",
+    		target:"http://10.40.155.150:3000",
+	  		host:"10.40.155.150:3000",
 	  		changeOrigin:true,
 	  		/*pathRewrite:{
     			"^/v4":""
     		}*/
 	  		},
 	  		"/saveApi":{
-    		target:"http://localhost:3000",
-	  		host:"localhost:3000",
+    		target:"http://10.40.155.150:3000",
+	  		host:"10.40.155.150:3000",
 	  		changeOrigin:true,
 	  		/*pathRewrite:{
     			"^/v4":""
