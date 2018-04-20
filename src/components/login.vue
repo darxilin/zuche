@@ -5,7 +5,7 @@
 		</top>
 		<div class="aa">
 			
-			<mt-field id="user" label="账　　号" placeholder="请输入用账户" v-model="email" class="iconfont icon-account"></mt-field>
+			<mt-field id="user" label="账　　号" placeholder="请输入用账户" v-model="Phonenumber" class="iconfont icon-account"></mt-field>
 			<mt-field label="密　　码" placeholder="请输入密码" type="password" v-model="password" class="iconfont icon-bags"></mt-field>
 		</div>
 		<div id="banner">
@@ -27,7 +27,7 @@ import router from  "../router"
 			return{
 			name:"李白",
 			username:"",
-			email:"",
+			Phonenumber:"",
 			password:""
 			}
 		},
@@ -35,11 +35,16 @@ import router from  "../router"
 			top,
 		},
 		methods:{
-			yanzhen(){	
-			
-			axios.get("/dataApi?id=5ad6f44dd13781279ceaeb96").then(res=>{
-				if(res.data.email==this.email && res.data.password==this.password){
+			yanzhen(){
+			var Phonenumber=this.Phonenumber;
+			axios.post("/dataApi",{
+				Phonenumber
+			}).then(res=>{
+				console.log(res)
+				if(res.data[0].Phonenumber==this.Phonenumber && res.data[0].password==this.password){
 					router.push("/index")
+				}else{
+					alert("用户名不存在")
 				}
 			}).catch(err=>{
 				alert("err")
