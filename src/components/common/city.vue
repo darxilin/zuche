@@ -2,7 +2,7 @@
 	<div class="city">
 		<top>
 			<mt-header class="top_header" title="选择城市" >
-				<router-link to="{name:route_back,params:{cityId}}" slot="left">
+				<router-link :to="{name:route_back}" slot="left">
 					 <mt-button class="back" icon="back"></mt-button>
 				</router-link>
 			</mt-header>
@@ -13,7 +13,7 @@
 			<p class="city">当前城市</p>
 			<p class="name">
 				<i class="iconfont icon-map"></i>
-				<span>{{cityName}}</span>
+				<span>{{city.name}}</span>
 			</p>
 		</div>
 		
@@ -47,8 +47,8 @@
 	export default {
 		data(){
 			return {
-				cityId:"",
-				cityName:"重庆",
+				city:{name:"重庆",cityId:12},
+				num:"",
 				recent:[{name:"重庆",cityId:12},{name:"成都",cityId:11}],
 				hot:[{name:"重庆",cityId:12},{name:"成都",cityId:11}],
 				nav:["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
@@ -56,6 +56,18 @@
 			}
 		},
 		methods:{
+			
+		},
+		mounted(){
+			this.route_back = this.$route.params.route_name;
+			this.num = this.$route.params.num;
+			
+			//存储城市信息
+			if(this.num == 1){
+				sessionStorage.setItem("qc_city",JSON.stringify(this.city))
+			}else if(this.num == 2){
+				sessionStorage.setItem("hc_city",JSON.stringify(this.city))
+			}
 			
 		},
 		components:{

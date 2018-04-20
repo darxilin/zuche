@@ -44,7 +44,7 @@ body{
  width: 100%;
  height: 100%;
 }
-body,p,ul,li{
+body,p,ul,li,input{
 	padding: 0;
 	margin: 0;
 }

@@ -26,7 +26,15 @@ module.exports = {
     		/*pathRewrite:{
     			"^/v4":""
     		}*/
-    	}
+    	},
+    	"/jiekou":{
+    		target:"http://127.0.0.1:3000",
+    		host:"http://127.0.0.1",
+    		changeOrigin:true,
+    		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+    	},
     },
 
     // Various Dev Server settings
