@@ -22,7 +22,7 @@
 		width: 100%;
 		height: 0.25rem;
 		background: #1b2939;
-		
+		z-index:3;
 	}
 	
 </style>

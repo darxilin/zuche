@@ -53,15 +53,7 @@
 				 return this.routers[i];
 			}
 		},
-		mounted(){
-			axios.get("/img").then((res)=>{
-				this.bannerlist = res.data.picList;
-				console.log(res.data)
-			}).catch((error)=>{
-				console.log(error);
-			});
-			
-			
+		mounted(){	
 		},
 		components:{
 			"swipe":Swipe,

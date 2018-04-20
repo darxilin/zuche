@@ -1,11 +1,11 @@
 <template>
-	<div>
-		国际
+	<div class="aa">
+		
 	</div>
 </template>
-
-<script>
+<script type="text/javascript">
+	
 </script>
-
 <style>
+	
 </style>
