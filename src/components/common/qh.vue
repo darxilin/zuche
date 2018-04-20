@@ -9,12 +9,12 @@
 						<span>取车城市</span>
 					</div>
 					<div class="city_mid" @click="qc_city_click(1)">
-						<span>{{cityName}}</span>
+						<span>{{qc_city.name}}</span>
 						<i class="el-icon-arrow-right"></i>
 					</div>
 					<div class="city_right">
 						<span>上门送车</span>
-						<el-switch v-model="qc_dz" active-color="#ffc200" inactive-color="#ff4949">
+						<el-switch v-model="qc_dz_check" active-color="#ffc200" inactive-color="#ff4949">
 						</el-switch>
 					</div>
 				</div>
@@ -23,11 +23,12 @@
 			<div class="qc_dizhi">
 				<i></i>
 				<div class="city">
-					<div class="city_left">
-						<span :style="qc_dz?'color:#ffc200':'color:'">{{qc_dz?"送车地址":"取车门店"}}</span>
+					<div class="city_left" >
+						<span :style="qc_dz_check?'color:#ffc200':'color:'">{{qc_dz_check?"送车地址":"取车门店"}}</span>
 					</div>
-					<div class="city_mid">
-						<span :style="qc_dz?'color:#e1e1e1':''">{{qc_dz?"请选择送车地址":"选择门店"}}</span>
+					<!--门店选择-->
+					<div class="city_mid" @click="qc_md_click(3)">
+						<span :style="qc_dz_check?'color:#e1e1e1':''">{{qc_dz_check?"请选择送车地址":qc_md.deptName}}</span>
 						<i class="el-icon-arrow-right"></i>
 					</div>
 					
@@ -44,12 +45,12 @@
 						<span>还车城市</span>
 					</div>
 					<div class="city_mid" @click="qc_city_click(2)">
-						<span>{{cityName}}</span>
+						<span>{{hc_city.name}}</span>
 						<i class="el-icon-arrow-right"></i>
 					</div>
 					<div class="city_right">
 						<span>上门取车</span>
-						<el-switch v-model="hc_dz" active-color="#ffc200" inactive-color="#ff4949">
+						<el-switch v-model="hc_dz_check" active-color="#ffc200" inactive-color="#ff4949">
 						</el-switch>
 					</div>
 				</div>
@@ -59,10 +60,11 @@
 				<i></i>
 				<div class="city">
 					<div class="city_left">
-						<span :style="hc_dz?'color:#ffc200':'color:'">{{hc_dz?"取车地址":"还车门店"}}</span>
+						<span :style="hc_dz_check?'color:#ffc200':'color:'">{{hc_dz_check?"取车地址":"还车门店"}}</span>
 					</div>
-					<div class="city_mid">
-						<span :style="hc_dz?'color:#e1e1e1':''">{{hc_dz?"请选择取车地址":"选择门店"}}</span>
+					<!--门店选择-->
+					<div class="city_mid" @click="qc_md_click(4)">
+						<span :style="hc_dz_check?'color:#e1e1e1':''">{{hc_dz_check?"请选择取车地址":hc_md.deptName}}</span>
 						<i class="el-icon-arrow-right"></i>
 					</div>
 					
@@ -74,10 +76,10 @@
 		<!--取车时间和还车时间-->
 		<div class="time">
 			<!--取车时间-->
-			<div class="time_qc">
+			<div class="time_qc" @click="qc_time_click(1)">
 				<p class="time_title">取车时间</p>
-				<p class="time_time">16:00</p>
-				<p class="time_day">04-22 周日</p>
+				<p class="time_time">{{qc_time.time}}</p>
+				<p class="time_day">{{qc_time.day}}</p>
 				
 			</div>
 			<!--天数-->
@@ -88,16 +90,16 @@
 				</div>
 			</div>
 			<!--还车时间-->
-			<div class="time_hc">
+			<div class="time_hc" @click="qc_time_click(2)">
 				<p class="time_title">还车时间</p>
-				<p class="time_time">16:00</p>
-				<p class="time_day">04-22 周日</p>
+				<p class="time_time">{{hc_time.time}}</p>
+				<p class="time_day">{{hc_time.day}}</p>
 			</div>
 		</div>
 		<div class="tips">
 			<p>部分城市指定区域，免费上门送取车！</p>
 		</div>
-		<div class="choose_car">
+		<div class="choose_car" @click="xuanche">
 			立即去选车
 		</div>
 	</div>
@@ -108,19 +110,32 @@
 	export default {
 		data(){
 			return {
-				cityName:"北京",
-				qc_dz:true,//取车门店
-				hc_dz:true,//还车门店
-				
+				qc_dz_check:false,//取车门店
+				hc_dz_check:false,//还车门店
 				
 			}
 		},
-		props:["route_name"],
+		props:["route_name","qc_city","hc_city","qc_md","hc_md","qc_time","hc_time"],
+		mounted(){
+			
+		},
 		methods:{
 			qc_city_click(n){
 				//n为1则是取车城市，n为2则是还车城市
 				
 				router.push({name:"city",params:{route_name:this.route_name,num:n}})
+			},
+			qc_md_click(n){
+				//n为3则是取车门店，n为4则是还车门店
+				
+				router.push({name:"md",params:{route_name:this.route_name,num:n}})
+			},
+			qc_time_click(n){
+				
+				router.push({name:"rentDate",params:{route_name:this.route_name,num:n}})
+			},
+			xuanche(){
+				router.push({name:"car_list"})
 			}
 		},
 		components:{
