@@ -1,6 +1,5 @@
 <template>
 	<div class="zuche">
-		
 		<router-view></router-view>
 	</div>
 </template>

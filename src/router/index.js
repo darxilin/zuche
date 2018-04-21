@@ -13,7 +13,16 @@ import register from '@/components/register'
 import my_info from '@/components/my_info'
 import order from '@/components/order'
 import city from '@/components/common/city'
+
 import mysz from "@/components/mysz"
+
+import md from '@/components/common/md'
+import rentDate from '@/components/common/rentDate'
+import rentTime from '@/components/common/rentTime'
+import car_list from '@/components/common/car_list'
+import service from '@/components/common/service'
+import order_confirm from '@/components/common/order_confirm'
+
 Vue.use(Router)
 
 export default new Router({
@@ -86,7 +95,37 @@ export default new Router({
 						path:"city",
 						name:"city",
 						component:city
-					}
+				},
+				{
+						path:"md",
+						name:"md",
+						component:md
+				},
+				{
+						path:"rentDate",
+						name:"rentDate",
+						component:rentDate
+				},
+				{
+						path:"rentTime",
+						name:"rentTime",
+						component:rentTime
+				},
+				{
+						path:"car_list",
+						name:"car_list",
+						component:car_list
+				},
+				{
+						path:"srvice",
+						name:"service",
+						component:service
+				},
+				{
+						path:"order_confirm",
+						name:"order_confirm",
+						component:order_confirm
+				},
 				
     	]
     },
