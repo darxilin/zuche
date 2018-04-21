@@ -13,7 +13,7 @@ import register from '@/components/register'
 import my_info from '@/components/my_info'
 import order from '@/components/order'
 import city from '@/components/common/city'
-
+import mysz from "@/components/mysz"
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +42,11 @@ export default new Router({
 	    		path:"my_info",
 	    		name:"my_info",
 	    		component:my_info
+	    	},
+	    	{
+	    		path:"mysz",
+	    		name:"mysz",
+	    		component:mysz
 	    	},
 	    	{
 	    		path:"order",

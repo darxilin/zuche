@@ -1,7 +1,7 @@
 <template>
 	<div id="register">
 		<top>
-			<i class="iconfont icon-back" @click=""></i>
+			<router-link tag="i" to="/my/login" class="iconfont icon-back"></router-link>
 		</top>
 		<div class="wrop">
 			<mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone" class="iconfont icon-mobilephone" v-on:change="headphone"></mt-field>

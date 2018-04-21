@@ -1,11 +1,11 @@
 <template>
 	<div id="login">
 		<top>
-			<i class="iconfont icon-back" @click=""></i>
+			<router-link tag="i" to="/index" class="iconfont icon-back"></router-link>
 		</top>
 		<div class="aa">
 			
-			<mt-field id="user" label="账　　号" placeholder="请输入用账户" v-model="Phonenumber" class="iconfont icon-account"></mt-field>
+			<mt-field id="user" label="账　　号" placeholder="请输入用账户" v-model="Phonenumber" class="iconfont icon-account" type="number"></mt-field>
 			<mt-field label="密　　码" placeholder="请输入密码" type="password" v-model="password" class="iconfont icon-bags"></mt-field>
 		</div>
 		<div id="banner">
