@@ -84,13 +84,11 @@
 					var obj = JSON.parse(sessionStorage.getItem("user"));
 					axios.post("/jiekou/login_check", obj).then((res) => {
 						if(res.data == 1) {
-							var id = this.sfc_selected.userId + new Date().getTime();
+							var id = JSON.parse(sessionStorage.getItem("user")).name + new Date().getTime();
 							var obj = {
 								orderId: id,
 								type: "sfc",
-								userId:JSON.parse(sessionStorage.getItem("user").name),
-								userId: "darxilin",
-								userId: String,
+								userId:JSON.parse(sessionStorage.getItem("user")).name,
 								name: this.sfc_selected.modeName,
 								img: this.sfc_selected.modePic,
 								price: this.sfc_selected.preferentialPrice,
@@ -99,8 +97,9 @@
 								hc_city: this.sfc_selected.returnCity,
 								end: this.sfc_selected.end,
 								start: this.sfc_selected.start,
+								total:this.sfc_selected.preferentialPrice
 							}
-							axios.post("/jiekou/order_create", this.sfc_selected).then((res) => {
+							axios.post("/jiekou/order_create", obj).then((res) => {
 								console.log(res.data)
 								if(res.data == 1) {
 									Toast({

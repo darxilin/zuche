@@ -45,7 +45,7 @@ import router from  "../router"
 					axios.post("/jiekou/user",{user:Phonenumber}).then((res)=>{
 						if(res.data == 1){
 							sessionStorage.setItem("user",JSON.stringify({name:Phonenumber}))
-							this.$router.go(-1);
+							router.push({name:"mysz"})
 						}else{
 							alert("登陆失败")
 						}

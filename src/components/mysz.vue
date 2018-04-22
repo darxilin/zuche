@@ -12,8 +12,8 @@
 		<div class="bgimg">
 				<img src="../../static/img/pu_ph.png" class="tubiao"/>
 		</div>
-		<div class="username">
-			{{username}}
+		<div class="username" @click="my_info">
+			{{username.name}}
 			<i class="iconfont icon-more"></i>
 		</div>
 	</div>
@@ -57,15 +57,16 @@
 		</ul>
 	</div>
 	<ul class="order">
-		<li class="li1"><span></span>自驾订单<b>()</b></li>
-		<li class="li2"><span></span>顺风车订单<b>()</b></li>
-		<li class="li3"><span></span>国际租车订单<b>()</b></li>
+		<li class="li1" @click="order"><span></span>自驾订单<b>()</b></li>
+		<li class="li2" @click="order"><span></span>顺风车订单<b>()</b></li>
+		<li class="li3" @click="order"><span></span>国际租车订单<b>()</b></li>
 		<li class="li4">发票管理<i class="iconfont icon-more"></i></li>
 	</ul>
 </div>
 </template>
 
 <script>
+	import router from "../router"
 import axios from "axios"
 import top from './common/top'
 	export default{
@@ -77,6 +78,14 @@ import top from './common/top'
 		components:{
 			top
 		},
+		methods:{
+			order(){
+				router.push({name:"order"})
+			},
+			my_info(){
+				router.push({name:"my_info"})
+			}
+		},
 		mounted(){
 			axios.get("/jiekou/order_",{
 				
@@ -85,6 +94,12 @@ import top from './common/top'
 			}).catch(err=>{
 				alert("err")
 			})
+			
+			if(sessionStorage.getItem("user")){
+				this.username = JSON.parse(sessionStorage.getItem("user"));
+			}else{
+				router.push({name:"login"})
+			}
 		}
 	}
 </script>
@@ -135,8 +150,6 @@ h1,h3{
  	}
  	.username{
  		padding-bottom:0.05rem ;
- 		width:0.45rem;
- 		height: 0.1rem;
  		margin:0 auto;
  		text-align: center;
  		color:#FFFFFF;

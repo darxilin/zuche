@@ -66,7 +66,7 @@ export default new Router({
 	    	},
 	    	{
 	    		path:"/",
-	    		redirect:"/my/my_info"
+	    		redirect:"/my/mysz"
 	    	},
     	]
     },

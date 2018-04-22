@@ -191,11 +191,10 @@
 					axios.post("/jiekou/login_check", obj).then((res) => {
 						if(res.data == 1) {
 							if(this.tongyi) {
-								this.car_model.userId = JSON.parse(sessionStorage.getItem("user").name);
+								this.car_model.userId = JSON.parse(sessionStorage.getItem("user")).name;
 								this.car_model.type = "normal"
 								this.car_model.total = this.count_car_t + this.count_jichu_t + this.car_model.shouxu;
-								this.car_model.orderId = this.car_model.userId + new Date().getTime();
-								console.log(this.car_model)
+								this.car_model.orderId = JSON.parse(sessionStorage.getItem("user")).name + new Date().getTime();
 								axios.post("/jiekou/order_create", this.car_model).then((res) => {
 									console.log(res.data)
 									if(res.data == 1) {

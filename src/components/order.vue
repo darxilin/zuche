@@ -24,7 +24,7 @@
 				
 			</li>
 			<li>
-				<span style="color:gold;">租金：{{(item.jichu+item.price)*item.rentDay+item.shouxu}}</span>
+				<span style="color:gold;">租金：{{item.total}}</span>
 				<span></span>
 			</li>
 	</ul>
