@@ -151,15 +151,17 @@
 			
 		}
 		>.tj_time{
-			overflow: hidden;
-			width: 100%;
+			overflow-x: hidden;
+			width: 100vw;
 			margin-bottom: 0.075rem;
 			>.time_scroll{
-				width: 150%;
+				width: 100vw;
 				overflow-x:scroll ;
 				overflow-scrolling:touch;
 				-webkit-overflow-scrolling: touch;
-			
+				&::-webkit-scrollbar {
+    display: none;
+}
 			>ul{
 				display: flex;
 				width: 2.4rem;

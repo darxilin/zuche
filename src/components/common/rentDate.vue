@@ -7,7 +7,7 @@
 				</router-link>
 			</mt-header>
 		</top>
-		<mt-button type="default" @click="openPicker">选择时间</mt-button>
+		<mt-button type="default" class="date" @click="openPicker">选择时间</mt-button>
 		<mt-datetime-picker  ref="picker" type="datetime" v-model="pickerValue" @confirm="gettime">
 		</mt-datetime-picker>
 	</div>
@@ -29,7 +29,7 @@
 		mounted(){
 			this.route_back = this.$route.params.route_name;
 			this.num = this.$route.params.num;
-			
+			this.$refs.picker.open();
 			//存储城市信息
 			/*if(this.num == 1){
 				sessionStorage.setItem("qc_city",JSON.stringify(this.city))
@@ -69,6 +69,9 @@
 				color: #fabe00;
 			}
 			
+		}
+		.date{
+			margin: 0 auto;
 		}
 	}
 </style>

@@ -21,7 +21,8 @@
 		<div class="recent">
 			<p class="city">最近访问城市</p>
 			<p class="city_name">
-				<span v-for="value in recent">{{value.name}}</span>
+				<span v-for="value in recent" @click="
+					city_click(value.name)">{{value.name}}</span>
 			</p>
 		</div>
 		
@@ -29,7 +30,16 @@
 		<div class="hot">
 			<p class="city">热门城市</p>
 			<p class="city_name">
-				<span v-for="value in hot">{{value.name}}</span>
+				<span v-for="value in hot" @click="
+					city_click(value.name)">{{value.name}}</span>
+			</p>
+		</div>
+		<!--城市列表-->
+		<div class="city_letter" v-for="value in letter">
+			<p class="city">{{value.letter}}</p>
+			<p class="city_name">
+				<span v-for="key in value.list" @click="
+					city_click(key.cityName)">{{key.cityName}}</span>
 			</p>
 		</div>
 		</div>
@@ -39,10 +49,14 @@
 			<span>热门</span>
 			<span v-for="value in nav">{{value}}</span>
 		</div>
+		
+		
 	</div>
 </template>
 
 <script>
+	import router from "../../router"
+	import axios from "axios"
 	import top from "./top"
 	export default {
 		data(){
@@ -53,21 +67,48 @@
 				hot:[{name:"重庆",cityId:12},{name:"成都",cityId:11}],
 				nav:["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 				route_back:"",
+				cityList:null,
+				letter:null,
+				click_city:null,
 			}
 		},
 		methods:{
-			
+			city_click(name){
+				//存储城市信息
+			if(this.num == 1){
+				sessionStorage.setItem("qc_city",JSON.stringify({name:name}))
+			}else if(this.num == 2){
+				sessionStorage.setItem("hc_city",JSON.stringify({name:name}))
+			}
+			router.push({name:this.route_back})
+			}
 		},
-		mounted(){
+		beforeMount(){
+			axios.get("/jiekou/city").then((res)=>{
+				this.cityList = res.data.result;
+				this.letter = [];
+			for(var i=0;i<26;i++){
+				var obj = {};
+				obj.letter = String.fromCharCode((65+i));
+				obj.list = []
+				this.letter.push(obj);
+			}
+			for(var i=0;i<this.cityList.length;i++){
+			var j = this.cityList[i].py.toUpperCase().charCodeAt(0)-65;
+			this.letter[j].list.push(this.cityList[i]);
+			}
+			console.log(...(this.letter))
+			
+			})
 			this.route_back = this.$route.params.route_name;
 			this.num = this.$route.params.num;
 			
-			//存储城市信息
-			if(this.num == 1){
-				sessionStorage.setItem("qc_city",JSON.stringify(this.city))
-			}else if(this.num == 2){
-				sessionStorage.setItem("hc_city",JSON.stringify(this.city))
-			}
+			
+			
+			
+		},
+		mounted(){
+			
 			
 		},
 		components:{
@@ -143,6 +184,9 @@
 				@extend .current;
 			}
 			>.hot{
+				@extend .current;
+			}
+			>.city_letter{
 				@extend .current;
 			}
 		}

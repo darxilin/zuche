@@ -106,6 +106,7 @@
 </template>
 
 <script>
+	import { MessageBox } from 'mint-ui';
 	import router from "../../router"
 	export default {
 		data(){
@@ -117,7 +118,19 @@
 		},
 		props:["route_name","qc_city","hc_city","qc_md","hc_md","qc_time","hc_time"],
 		mounted(){
-			
+			if(!sessionStorage.getItem("qc_city")){
+				sessionStorage.setItem("qc_city",JSON.stringify(this.qc_city));
+			}
+			if(!sessionStorage.getItem("hc_city")){
+				sessionStorage.setItem("hc_city",JSON.stringify(this.hc_city));
+			}
+			if(!sessionStorage.getItem("qc_time")){
+				sessionStorage.setItem("qc_time",new Date().getTime());
+			}
+			if(!sessionStorage.getItem("hc_time")){
+				var d = new Date();
+				sessionStorage.setItem("hc_time",d.setDate(d.getDate()+5));
+			}
 		},
 		methods:{
 			qc_city_click(n){
@@ -135,7 +148,12 @@
 				router.push({name:"rentDate",params:{route_name:this.route_name,num:n}})
 			},
 			xuanche(){
-				router.push({name:"car_list"})
+				if(!sessionStorage.getItem("qc_md")||!sessionStorage.getItem("hc_md")){
+					MessageBox('提示', '请选择门店');
+				}else{
+					router.push({name:"car_list"})
+				}
+				
 			}
 		},
 		components:{

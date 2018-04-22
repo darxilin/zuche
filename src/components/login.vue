@@ -42,7 +42,15 @@ import router from  "../router"
 			}).then(res=>{
 				console.log(res)
 				if(res.data[0].Phonenumber==this.Phonenumber && res.data[0].password==this.password){
-					router.push("/index")
+					axios.post("/jiekou/user",{user:Phonenumber}).then((res)=>{
+						if(res.data == 1){
+							sessionStorage.setItem("user",JSON.stringify({name:Phonenumber}))
+							this.$router.go(-1);
+						}else{
+							alert("登陆失败")
+						}
+						
+					})
 				}else{
 					alert("用户名不存在")
 				}

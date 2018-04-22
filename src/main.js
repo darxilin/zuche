@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Mint from 'mint-ui';
 import "mint-ui/lib/style.css"
 import 'element-ui/lib/theme-chalk/index.css';
+import store from "./store"
+
 
 Vue.use(ElementUI);
 Vue.use(Mint);
@@ -18,6 +20,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

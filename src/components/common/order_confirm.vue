@@ -1,9 +1,9 @@
 <template>
 	<div class="order_confirm" v-if="car_model">
 		<top>
-			<mt-header class="top_header" title="确认订单" >
+			<mt-header class="top_header" title="确认订单">
 				<router-link to slot="left" @click.native="go_back">
-					 <mt-button class="back" icon="back"></mt-button>
+					<mt-button class="back" icon="back"></mt-button>
 				</router-link>
 			</mt-header>
 		</top>
@@ -14,7 +14,7 @@
 				<p class="car_des">{{car_model.des}}</p>
 			</div>
 		</div>
-		
+
 		<!--时间-->
 		<div class="time">
 			<div class="time_qc">
@@ -38,7 +38,7 @@
 				</p>
 			</div>
 		</div>
-		
+
 		<!--基本费用-->
 		<div class="jiben">
 			<div class="title">基本费用</div>
@@ -58,14 +58,14 @@
 			</div>
 			<div class="count">基本费用合计<span>{{total_money}}</span></div>
 		</div>
-		
+
 		<!---->
 		<div class="zhifu">
 			<span>优先使用账户余额/储值卡/积分支付<i class="iconfont icon-help"></i></span>
 			<el-switch v-model="check" class="switch" active-color="#ffc200" inactive-color="#ff4949">
 			</el-switch>
 		</div>
-		
+
 		<!--取车须知-->
 		<div class="xuzhi">
 			<p>取车须知</p>
@@ -74,234 +74,266 @@
 			<p>3、本人一张信用及可用额度均不低于3000元的国内有效信用卡;</p>
 			<p>所有证件有效期须至少超过当次租期的一个月以上。</p>
 		</div>
-		
+
 		<div class="tongyi">
 			<input type="checkbox" v-model="tongyi" />
 			<span>我已阅读并同意《订单说明及退改规则》</span>
 		</div>
-		
+
 		<div class="submit">
 			<a :class="tongyi?'':'dis'" @click="to_order">提交订单</a>
 		</div>
-		
+
 	</div>
 </template>
 
 <script>
+	import { MessageBox, Toast } from 'mint-ui';
 	import axios from "axios"
 	import top from "./top"
 	import router from "../../router"
 	export default {
-		data(){
+		data() {
 			return {
-				car_model:null,
-				qc_time:null,
-				hc_time:null,
-				check:true,
-				tongyi:true,
-				count_car_t:0,
-				count_car_t:0,
-				total_t:0,
-				
+				car_model: null,
+				qc_time: null,
+				hc_time: null,
+				check: true,
+				tongyi: true,
+				count_car_t: 0,
+				count_car_t: 0,
+				total_t: 0,
+
 			}
 		},
-		mounted(){
+		mounted() {
 			//计算时间
-			function day_time(date){
+			function day_time(date) {
 				var dates = new Date()
 				dates.setTime(date)
-				var _week = (dates)=>{
+				var _week = (dates) => {
 					var week = dates.getDay();
 					var str = " 周";
-					switch(week){
-						case 0:str += "日";
+					switch(week) {
+						case 0:
+							str += "日";
 							break;
-						case 1:str += "一";
+						case 1:
+							str += "一";
 							break;
-						case 2:str += "二";
+						case 2:
+							str += "二";
 							break;
-						case 3:str += "三";
+						case 3:
+							str += "三";
 							break;
-						case 4:str += "四";
+						case 4:
+							str += "四";
 							break;
-						case 5:str += "五";
+						case 5:
+							str += "五";
 							break;
-						case 6:str += "六";
+						case 6:
+							str += "六";
 							break;
-						
+
 					}
 					return str;
 				};
-				var _day = dates.getMonth() + 1 +"月"+dates.getDate() + "日";
-				var time1 = ()=>{
-					if(dates.getMinutes()>=0 && dates.getMinutes()<=29){
+				var _day = dates.getMonth() + 1 + "月" + dates.getDate() + "日";
+				var time1 = () => {
+					if(dates.getMinutes() >= 0 && dates.getMinutes() <= 29) {
 						return "00";
-					}else{
+					} else {
 						return "30";
 					}
 				};
-				var _times =_week(dates) +" "+ dates.getHours() + ":" + time1()
-				var _time = {day:_day,time:_times}
-				return _time;
+				var _times = _week(dates) + " " + dates.getHours() + ":" + time1()
+				var _time = {
+					day: _day,
+					time: _times
 				}
-			
-			
-			if(sessionStorage.getItem("selected")){
+				return _time;
+			}
+
+			if(sessionStorage.getItem("selected")) {
 				this.car_model = JSON.parse(sessionStorage.getItem("selected"));
 			}
-			if(sessionStorage.getItem("qc_city")){
+			if(sessionStorage.getItem("qc_city")) {
 				this.car_model.qc_city = JSON.parse(sessionStorage.getItem("qc_city")).name;
 			}
-			if(sessionStorage.getItem("hc_city")){
+			if(sessionStorage.getItem("hc_city")) {
 				this.car_model.hc_city = JSON.parse(sessionStorage.getItem("hc_city")).name;
 			}
-			if(sessionStorage.getItem("qc_md")){
+			if(sessionStorage.getItem("qc_md")) {
 				this.car_model.qc_md = JSON.parse(sessionStorage.getItem("qc_md")).deptName;
 			}
-			if(sessionStorage.getItem("hc_md")){
+			if(sessionStorage.getItem("hc_md")) {
 				this.car_model.hc_md = JSON.parse(sessionStorage.getItem("hc_md")).deptName;
 			}
-			if(sessionStorage.getItem("qc_time")){
+			if(sessionStorage.getItem("qc_time")) {
 				var qc_time = Number(sessionStorage.getItem("qc_time"))
 				this.qc_time = day_time(qc_time)
 			}
-			if(sessionStorage.getItem("hc_time")){
+			if(sessionStorage.getItem("hc_time")) {
 				var hc_time = Number(sessionStorage.getItem("hc_time"))
 				this.hc_time = day_time(hc_time)
 			}
-			
+
 		},
-		methods:{
-			go_back(){
+		methods: {
+			go_back() {
 				this.$router.go(-1);
 			},
-			to_order(){
-				if(this.tongyi){
-					this.car_model.userId = "darxilin";
-					this.car_model.orderId =this.car_model.userId +  new Date().getTime();
-					console.log(this.car_model)
-					axios.post("/jiekou/order_create",this.car_model).then((res)=>{
-						console.log(res.data)
+			to_order() {
+				if(sessionStorage.getItem("user")) {
+					var obj = JSON.parse(sessionStorage.getItem("user"));
+					axios.post("/jiekou/login_check", obj).then((res) => {
+						if(res.data == 1) {
+							if(this.tongyi) {
+								this.car_model.userId = JSON.parse(sessionStorage.getItem("user").name);
+								this.car_model.type = "normal"
+								this.car_model.total = this.count_car_t + this.count_jichu_t + this.car_model.shouxu;
+								this.car_model.orderId = this.car_model.userId + new Date().getTime();
+								console.log(this.car_model)
+								axios.post("/jiekou/order_create", this.car_model).then((res) => {
+									console.log(res.data)
+									if(res.data == 1) {
+										Toast({
+											message: '订单提交成功！',
+											position: 'bottom',
+											duration: 1000
+										});
+										setTimeout(() => {
+											router.push({name:"order"})
+										}, 1000)
+									} else {
+										MessageBox('提示', '订单提交失败！');
+									}
+								})
+							}
+						} else {
+							router.push({name:"login"})
+						}
 					})
-					//router.push({name:"order"})
+				} else {
+					router.push({name:"login"})
 				}
 			}
 		},
-		computed:{
-			count_car(){
-				this.count_car_t = this.car_model.price*this.car_model.rentDay;
+		computed: {
+			count_car() {
+				this.count_car_t = this.car_model.price * this.car_model.rentDay;
 				return this.count_car_t;
 			},
-			count_jichu(){
-				this.count_jichu_t = this.car_model.jichu*this.car_model.rentDay;
+			count_jichu() {
+				this.count_jichu_t = this.car_model.jichu * this.car_model.rentDay;
 				return this.count_jichu_t;
 			},
-			total_money(){
-				this.total = this.count_car_t + this.count_jichu_t +this.car_model.shouxu;
+			total_money() {
+				this.total = this.count_car_t + this.count_jichu_t + this.car_model.shouxu;
 				return this.total;
 			}
 		},
-		components:{
+		components: {
 			top
 		}
 	}
 </script>
 
 <style lang="scss" scoped="scoped">
-	.order_confirm{
-		.top_header{
+	.order_confirm {
+		.top_header {
 			height: 100%;
 			width: 100%;
 			background: #1b2939;
 			font-size: 0.09rem;
-			.back{
+			.back {
 				font-size: 0.09rem;
 				color: #fabe00;
 			}
-			
 		}
-		>.car{
+		>.car {
 			background: #fff;
 			padding-left: 0.075rem;
 			display: flex;
 			align-items: center;
-			>img{
+			>img {
 				width: 0.5rem;
 				height: 0.3rem;
 				margin-right: 0.05rem;
 			}
-			>.right{
+			>.right {
 				flex: 1;
-				>.car_name{
+				>.car_name {
 					margin: 0.1rem 0 0.075rem;
 					font-size: 0.08rem;
 					color: #60606c;
 				}
-				>.car_des{
+				>.car_des {
 					font-size: 0.07rem;
 					margin-bottom: 0.1rem;
 					color: #93939e;
 				}
 			}
 		}
-		>.time{
+		>.time {
 			background: #fff;
 			padding-left: 0.075rem;
 			border-bottom: 1px solid #E1E1E1;
-			>.time_qc{
+			>.time_qc {
 				border-top: 1px solid #E1E1E1;
 				padding-top: 0.1rem;
 				padding-left: 0.05rem;
-				>.top{
+				>.top {
 					font-size: 0.07rem;
 					color: #60606c;
-					>.day{
+					>.day {
 						display: inline-block;
 						width: 0.35rem;
 						margin-right: 0.1rem;
 					}
-					
 				}
-				>.bottom{
+				>.bottom {
 					@extend .top;
 					color: #93939e;
 				}
 			}
-			>.time_hc{
+			>.time_hc {
 				@extend .time_qc;
 				border: none;
 				padding: 0.05rem 0 0.1rem;
 				padding-left: 0.05rem;
 			}
 		}
-		>.jiben{
+		>.jiben {
 			font-size: 0.07rem;
 			background: #fff;
-			>div{
+			>div {
 				border-bottom: 1px solid #E1E1E1;
 			}
-			>.title{
+			>.title {
 				color: #93939e;
-				background:#f3fbfe ;
+				background: #f3fbfe;
 				height: 0.25rem;
 				line-height: 0.25rem;
 				text-indent: 0.075rem;
 			}
-			>.xiangmu{
+			>.xiangmu {
 				padding-left: 0.075rem;
-				>p{
+				>p {
 					border-bottom: 1px solid #E1E1E1;
 					line-height: 0.25rem;
 					color: #60606c;
 					height: 0.25rem;
-					&:nth-of-type(3){
+					&:nth-of-type(3) {
 						border: none;
 					}
-					>.b{
+					>.b {
 						float: right;
 						margin-right: 0.075rem;
 						color: #93939e;
-						>b{
+						>b {
 							font-size: 0.08rem;
 							color: #2f2f39;
 							font-weight: normal;
@@ -309,10 +341,10 @@
 					}
 				}
 			}
-			>.count{
+			>.count {
 				@extend .title;
 				color: #60606c;
-				>span{
+				>span {
 					float: right;
 					color: #fabe00;
 					font-size: 0.08rem;
@@ -320,7 +352,7 @@
 				}
 			}
 		}
-		>.zhifu{
+		>.zhifu {
 			height: 0.25rem;
 			font-size: 0.07rem;
 			color: #60606c;
@@ -331,41 +363,41 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			>span{
-				>i{
+			>span {
+				>i {
 					font-size: 0.07rem;
 					margin-left: 0.025rem;
 				}
 			}
-			>.switch{
+			>.switch {
 				margin-right: 0.075rem;
 			}
 		}
-		>.xuzhi{
+		>.xuzhi {
 			background: #fff;
 			font-size: 0.06rem;
 			padding: 0.125rem 0.1rem;
-			>p{
+			>p {
 				line-height: 0.08rem;
 				margin-bottom: 0.05rem;
 				color: #93939e;
-				&:first-of-type{
+				&:first-of-type {
 					font-size: 0.07rem;
 					color: #60606c;
 					margin-bottom: 0.1rem;
 				}
-				&:last-of-type{
+				&:last-of-type {
 					color: #ff8650;
 					margin: 0;
 				}
 			}
 		}
-		>.tongyi{
-			padding:0.1rem 0.075rem ;
+		>.tongyi {
+			padding: 0.1rem 0.075rem;
 			font-size: 0.07rem;
 			line-height: 0.1rem;
 			overflow: hidden;
-			>input{
+			>input {
 				float: left;
 				width: 0.1rem;
 				height: 0.1rem;
@@ -373,22 +405,21 @@
 				border-radius: 50%;
 				margin-right: 0.05rem;
 			}
-			>span{
+			>span {
 				float: left;
 				color: #93939e;
 			}
-			
 		}
-		>.submit{
+		>.submit {
 			height: 0.225rem;
-			>a{
+			>a {
 				color: #fff;
 				display: block;
 				text-align: center;
-				line-height:0.225rem;
+				line-height: 0.225rem;
 				font-size: 0.075rem;
 				background: #ffc200;
-				&.dis{
+				&.dis {
 					background: #dadadf;
 				}
 			}

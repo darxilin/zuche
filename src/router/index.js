@@ -19,6 +19,8 @@ import rentTime from '@/components/common/rentTime'
 import car_list from '@/components/common/car_list'
 import service from '@/components/common/service'
 import order_confirm from '@/components/common/order_confirm'
+import order_sfc from '@/components/order_sfc'
+import sfc_list from '@/components/sfc_list'
 Vue.use(Router)
 
 export default new Router({
@@ -128,7 +130,23 @@ export default new Router({
     {
     	path:"/sfc",
     	name:"sfc",
-    	component:sfc
+    	component:sfc,
+    	children:[
+    	{
+    		path:"sfc_list",
+    		name:"sfc_list",
+    		component:sfc_list
+    	},
+    	{
+    		path:"order_sfc",
+    		name:"order_sfc",
+    		component:order_sfc
+    	},
+    	{
+	    		path:"/",
+	    		redirect:"/sfc/sfc_list"
+	    	},
+    	]
     },
     {
       path: '*',
