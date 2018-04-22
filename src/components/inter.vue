@@ -60,19 +60,19 @@
 				</li>
 			</ul>
 			<div class="help">
-					<a>
+					<a href="https://m.zuche.com/html5/international/drivecard.html">
 						<img src="../../static/img/jzfy@2x.png"/>
 						<span>
 							驾照翻译
 						</span>
 					</a>
-					<a>
+					<a href="https://m.zuche.com/html5/internationalExplain/carrentalnotice.html?szhdbm=wap">
 						<img src="../../static/img/zcxz@2x.png"/>
 						<span>
 							租车须知
 						</span>
 					</a>
-					<a>
+					<a href="https://m.zuche.com/html5/internationalExplain/faq.html?szhdbm=wap">
 						<img src="../../static/img/quwstion@2x.png"/>
 						<span>
 							常见问题
@@ -244,6 +244,8 @@ li{
     padding: 20px 0;
     background-color: #fff;
 	a{	
+		text-decoration:none; 
+		color: #333333;
 		width: 0.625rem;
 		height: 0.27rem;
 		display: flex;
