@@ -20,9 +20,18 @@ module.exports = {
     			"^/v4":""
     		}*/
 	  		},
+	  		"/jiekou":{
+    		target:"http://127.0.0.1:3000",
+	  		host:"127.0.0.1:3000",
+	  		changeOrigin:true,
+	  		/*pathRewrite:{
+    			"^/v4":""
+    		}*/
+	  		},
+
 	  		"/saveApi":{
-    		target:"http://localhost:3000",
-	  		host:"localhost:3000",
+    		target:"http://127.0.0.1:3000",
+	  		host:"127.0.0.1:3000",
 	  		changeOrigin:true,
 	  		/*pathRewrite:{
     			"^/v4":""
@@ -37,16 +46,8 @@ module.exports = {
     		}*/
     	},
     	"/img":{
-    		target:"http://10.40.155.154:3000",
-    		host:"http://10.40.155.154",
-    		changeOrigin:true,
-    		/*pathRewrite:{
-    			"^/v4":""
-    		}*/
-    	},
-    	"/jiekou":{
     		target:"http://127.0.0.1:3000",
-    		host:"http://127.0.0.1",
+    		host:"http://127.0.0.1:3000",
     		changeOrigin:true,
     		/*pathRewrite:{
     			"^/v4":""

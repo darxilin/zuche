@@ -13,6 +13,9 @@ import register from '@/components/register'
 import my_info from '@/components/my_info'
 import order from '@/components/order'
 import city from '@/components/common/city'
+
+import mysz from "@/components/mysz"
+
 import md from '@/components/common/md'
 import rentDate from '@/components/common/rentDate'
 import rentTime from '@/components/common/rentTime'
@@ -21,6 +24,7 @@ import service from '@/components/common/service'
 import order_confirm from '@/components/common/order_confirm'
 import order_sfc from '@/components/order_sfc'
 import sfc_list from '@/components/sfc_list'
+
 Vue.use(Router)
 
 export default new Router({
@@ -49,6 +53,11 @@ export default new Router({
 	    		path:"my_info",
 	    		name:"my_info",
 	    		component:my_info
+	    	},
+	    	{
+	    		path:"mysz",
+	    		name:"mysz",
+	    		component:mysz
 	    	},
 	    	{
 	    		path:"order",
