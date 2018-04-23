@@ -87,13 +87,6 @@ import top from './common/top'
 			}
 		},
 		mounted(){
-			axios.get("/jiekou/order_",{
-				
-			}).then(res=>{
-				
-			}).catch(err=>{
-				alert("err")
-			})
 			
 			if(sessionStorage.getItem("user")){
 				this.username = JSON.parse(sessionStorage.getItem("user"));
